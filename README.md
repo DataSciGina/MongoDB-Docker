@@ -1,42 +1,103 @@
-## Container Configuration
+# MongoDB-Docker
 
-### Create and Set Up Container
+Reproducible MongoDB development environment using Docker Compose, including Mongo Express as a web-based administrative interface.
 
-1. Clone the repository:
+## Overview
+
+This project provides a simple and automated way to deploy a MongoDB database locally using Docker containers.  
+It is designed for development and testing purposes, enabling fast setup and consistent environments without manual installation.
+
+The setup includes:
+- MongoDB database container
+- Mongo Express web interface
+- Persistent storage for data and logs
+- Automated startup via shell script
+
+---
+
+## Requirements
+
+- Docker
+- Docker Compose
+- Linux or Unix-based environment (recommended)
+
+---
+
+## Installation & Usage
+
+### 1. Clone the repository
 
     ```bash
     git clone https://github.com/DataSciGina/MongoDB-Docker.git
     ```
 
-2. Ensure Docker is installed on your system:
+cd MongoDB-Docker
+### 2. Verify Docker installation
 
     ```bash
-    sudo docker version
+    docker version
     ```
 
-3. Navigate to the 'MongoDB-Docker' directory:
+### 3. Navigate to the 'MongoDB-Docker' directory:
 
     ```bash
     cd MongoDB-Docker/
     ```
 
-4. Ensure your user has execution permissions and run the script `mongo.sh`:
+### 4. Grant execution permissions and start services:
 
     ```bash
-    sudo chmod u+x mongo.sh
-    sudo ./mongo.sh
+    chmod u+x mongo.sh
+    ./mongo.sh
     ```
+This will:
 
-5. Access the graphical interface via `localhost:8081` or your machine's IP followed by `:8081` in your browser (Example: `192.168.xxx.xxx:8081`). To get your local machine IP address, you can use:
+- Create required directories for data and logs
+- Start MongoDB and Mongo Express containers in detached mode
+
+## Access Services
+
+**MongoDB**
+
+- Host: localhost
+- Port: 27017
+
+**Mongo Express (Web UI)**
+
+- URL: http://localhost:8081
+- Username: user
+- Password: pass
+
+⚠️ Credentials are intended for development only.
+It is recommended to change them before using in other environments.
+
+## Project Structure
 
     ```bash
-    hostname -I
+    .
+    ├── docker-compose.yml
+    ├── mongo.sh
+    ├── mongo_data/
+    │   ├── log/
+    │   └── data/
+    ├── README.md
+    └── .gitignore
     ```
 
-6. You’ll need to enter a username and password. By default, the username is `admin` and the password is `pass`. It is recommended to change these in your `config.js`.
+## Use Cases
 
-I hope you find this tool useful! If you have any questions or need further assistance, feel free to open an issue in the repository or contact me.
+- Local development environments
+- Backend service testing
+- MongoDB learning and experimentation
+- Rapid database setup for projects
 
-Best regards,  
-Fernández Rodríguez, Agostina Ailén
+## Notes
 
+- Data is persisted locally using Docker volumes.
+- Containers restart automatically unless stopped manually.
+- Not intended for production use without security hardening.
+
+## Author
+
+Agostina Fernández
+GitHub: https://github.com/DataSciGina
